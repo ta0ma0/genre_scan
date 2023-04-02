@@ -128,3 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 notes.txt
+my_artists.txt
+uniq_artists.txt
+list_of_artists_sample.txt
+list_of_artists.txt
+dump_of_genres.json
