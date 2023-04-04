@@ -28,7 +28,7 @@ count = position
 for el in list_of_artits[position:]:
     count += 1
     genre_list = []
-    params = {'who': el, 'mode':'map'}
+    params = {'who': el, 'mode': 'map'}
     response = requests.get(base_url, params=params)
     soup = BeautifulSoup(response.text, "html.parser")
     body = soup.find('body')
@@ -48,7 +48,7 @@ for el in list_of_artits[position:]:
             pass
     genre_dict.update({el: genre_list[:-2]})
     with open('dump_of_genres.json', 'w') as dump:
-        json.dump(genre_dict, dump)        
+        json.dump(genre_dict, dump)
     time.sleep(3)
 
 print(genre_dict)
