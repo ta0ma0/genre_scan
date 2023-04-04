@@ -19,14 +19,11 @@ genre_dict = {}
 with open("dump_of_genres.json") as genres_f:
     genre_dict = json.load(genres_f)
 
-
-
-
 with open("last_position.txt") as lp:
     last_position = lp.read()
- 
+
 position = list_of_artits.index(last_position)
-count = position 
+count = position
 
 for el in list_of_artits[position:]:
     count += 1
@@ -37,22 +34,21 @@ for el in list_of_artits[position:]:
     body = soup.find('body')
     try:
         genres = body.div.find_all('a', href=True)
-    except AttributeError as err:
+    except AttributeError:
         pass
-    print(el, f"Left {len(list_of_artits) - count} genres or ~{((len(list_of_artits) - count) * 3) / 60} minutes")
+    print(el, f"Left {len(list_of_artits) - count} genres or \
+          ~ {((len(list_of_artits) - count) * 3) / 60} minutes")
     with open('last_position.txt', 'w') as lp:
         lp.write(el)
     for item in genres:
         try:
             genres_clean = item.text
             genre_list.append(genres_clean)
-        except TypeError as er:
+        except TypeError:
             pass
-    genre_dict.update({el:genre_list[:-2]})
+    genre_dict.update({el: genre_list[:-2]})
     with open('dump_of_genres.json', 'w') as dump:
         json.dump(genre_dict, dump)        
     time.sleep(3)
 
 print(genre_dict)
-
-

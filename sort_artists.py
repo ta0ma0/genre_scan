@@ -1,6 +1,5 @@
-import enchant
 import unicodedata
-import json
+
 
 def is_latin(word):
     for char in word:
@@ -8,13 +7,12 @@ def is_latin(word):
             return True
     return False
 
+
 def is_cyrillic(word):
     for char in word:
         if unicodedata.name(char).startswith('CYRILLIC'):
             return True
     return False
-
-
 
 
 artists_list = []
@@ -35,7 +33,7 @@ with open('uniq_artists.txt') as f:
                 # print(f"Is cyrillic")
                 artists_list.append(line_clean)
             else:
-                print(f"I don't now")
+                print("I don't now")
 
 with open('list_of_artists.txt', 'w') as df:
     df.writelines([word + ';' for word in artists_list])
